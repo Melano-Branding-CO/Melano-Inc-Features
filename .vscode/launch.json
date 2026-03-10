@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "chrome",
+            "name": "https://vercel.com/marketplace/supabase",
+            "request": "launch",
+            "url": "https://vercel.com/marketplace/supabase"
+        }
+    ]
+}
