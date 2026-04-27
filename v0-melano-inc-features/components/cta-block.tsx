@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 type CtaLink = { label: string; href: string };
 
 type CtaBlockProps = {
@@ -16,19 +14,23 @@ export function CtaBlock({ title, description, primary, secondary }: CtaBlockPro
         <h2 className="text-3xl font-semibold text-white md:text-4xl">{title}</h2>
         <p className="mt-4 max-w-2xl text-zinc-300">{description}</p>
         <div className="mt-8 flex flex-wrap gap-3">
-          <Link
+          <a
             className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-zinc-200"
             href={primary.href}
+            target={primary.href.startsWith("http") ? "_blank" : undefined}
+            rel={primary.href.startsWith("http") ? "noreferrer" : undefined}
           >
             {primary.label}
-          </Link>
+          </a>
           {secondary ? (
-            <Link
+            <a
               className="rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
               href={secondary.href}
+              target={secondary.href.startsWith("http") ? "_blank" : undefined}
+              rel={secondary.href.startsWith("http") ? "noreferrer" : undefined}
             >
               {secondary.label}
-            </Link>
+            </a>
           ) : null}
         </div>
       </div>

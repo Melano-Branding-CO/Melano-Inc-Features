@@ -37,16 +37,25 @@ export async function POST(request: Request) {
   if (supabase) {
     const { error } = await supabase.from(tableName).insert([record]);
     if (error) {
-      return NextResponse.json(
-        {
-          ok: false,
-          error: "No se pudo guardar el lead en Supabase.",
-          detail: error.message,
-        },
-        { status: 500 },
-      );
+      mode = "mock";
+      const webhookPayload = {
+        event: "lead.supabase_error",
+        lead: record,
+        detail: error.message,
+      };
+
+      if (webhookUrl) {
+        fetch(webhookUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(webhookPayload),
+        }).catch(() => {
+          // Keep webhook non-blocking for conversion safety.
+        });
+      }
+    } else {
+      mode = "supabase";
     }
-    mode = "supabase";
   }
 
   if (webhookUrl) {
