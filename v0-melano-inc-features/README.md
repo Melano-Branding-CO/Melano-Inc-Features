@@ -53,3 +53,113 @@ Desde la raiz del repo:
      - `[[plugins]]`
      - `package = "@netlify/plugin-nextjs"`
 4. Cargar variables de entorno.
+
+## Despliegue en Hostinger VPS (Node + PM2 + Nginx + SSL)
+
+Archivos de apoyo ya incluidos:
+
+- `deploy/hostinger/ecosystem.config.cjs`
+- `deploy/hostinger/nginx.conf`
+- `deploy/hostinger/deploy.sh`
+
+### 1) Preparar VPS
+
+```bash
+sudo apt update
+sudo apt install -y nginx certbot python3-certbot-nginx
+
+# Node 20 LTS (opcion recomendada)
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt install -y nodejs
+
+# PM2 global
+sudo npm i -g pm2
+```
+
+### 2) Clonar y configurar app
+
+```bash
+sudo mkdir -p /var/www/melano-inc-features
+sudo chown -R $USER:$USER /var/www/melano-inc-features
+cd /var/www/melano-inc-features
+git clone <TU_REPO_URL> .
+cd v0-melano-inc-features
+cp .env.example .env.local
+```
+
+Editar `.env.local` con tus valores reales (Supabase, WhatsApp, etc.).
+
+### 3) Build y arranque con PM2
+
+```bash
+cd /var/www/melano-inc-features/v0-melano-inc-features
+npm install
+npm run build
+pm2 start deploy/hostinger/ecosystem.config.cjs --env production
+pm2 save
+pm2 startup
+```
+
+Verificar:
+
+```bash
+pm2 status
+curl -I http://127.0.0.1:3000
+```
+
+### 4) Configurar Nginx reverse proxy
+
+```bash
+sudo cp /var/www/melano-inc-features/v0-melano-inc-features/deploy/hostinger/nginx.conf /etc/nginx/sites-available/brunomelano.com
+sudo nano /etc/nginx/sites-available/brunomelano.com
+```
+
+Reemplazar en ese archivo:
+
+- `brunomelano.com`
+- `www.brunomelano.com`
+
+Luego:
+
+```bash
+sudo ln -s /etc/nginx/sites-available/brunomelano.com /etc/nginx/sites-enabled/brunomelano.com
+sudo nginx -t
+sudo systemctl reload nginx
+```
+
+### 5) SSL con Let's Encrypt
+
+```bash
+sudo certbot --nginx -d brunomelano.com -d www.brunomelano.com
+```
+
+### 6) Deploy rápido en updates
+
+En el VPS:
+
+```bash
+cd /var/www/melano-inc-features/v0-melano-inc-features
+bash deploy/hostinger/deploy.sh
+```
+
+El script hace `git pull`, `npm ci`, `npm run build` y `pm2 reload`.
+
+### 7) DNS en Hostinger
+
+En el panel DNS de tu dominio:
+
+- A `@` -> IP pública de tu VPS
+- A `www` -> IP pública de tu VPS
+
+### 8) Troubleshooting rápido
+
+```bash
+pm2 logs melano-ai-hub --lines 200
+sudo journalctl -u nginx -n 200 --no-pager
+sudo nginx -t
+```
+
+Si cambias puerto/app name, actualiza:
+
+- `deploy/hostinger/ecosystem.config.cjs`
+- `deploy/hostinger/nginx.conf`
