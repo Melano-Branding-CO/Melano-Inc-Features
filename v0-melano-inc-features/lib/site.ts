@@ -61,7 +61,7 @@ export const NAV_LINKS = [
   { label: "Luxia", href: "/luxia" },
   { label: "Alexia", href: "/alexia" },
   { label: "Login", href: "/login" },
-];
+] as const;
 
 export const products: ProductDefinition[] = [
   {

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { createWhatsAppLink } from "@/lib/site";
 
 type HeroProps = {
@@ -31,19 +30,23 @@ export function Hero({
         </h1>
         <p className="mt-6 max-w-2xl text-base text-zinc-300 md:text-lg">{subtitle}</p>
         <div className="mt-10 flex flex-wrap gap-4">
-          <Link
+          <a
             href={primaryCta.href}
             className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-zinc-200"
+            target={primaryCta.href.startsWith("http") ? "_blank" : undefined}
+            rel={primaryCta.href.startsWith("http") ? "noreferrer" : undefined}
           >
             {primaryCta.label}
-          </Link>
+          </a>
           {secondaryCta ? (
-            <Link
+            <a
               href={secondaryCta.href}
               className="rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+              target={secondaryCta.href.startsWith("http") ? "_blank" : undefined}
+              rel={secondaryCta.href.startsWith("http") ? "noreferrer" : undefined}
             >
               {secondaryCta.label}
-            </Link>
+            </a>
           ) : null}
           <a
             href={createWhatsAppLink(`Hola MELANO INC, quiero hablar sobre: ${title}`)}
