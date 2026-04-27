@@ -31,6 +31,12 @@ Important current repository facts:
 
 Use the root workspace for orchestration and quick verification.
 
+Cloud agent environment config:
+
+- Repo now includes `.cursor/environment.json` to preinstall app dependencies with `npm ci` in `v0-melano-inc-features`.
+- This enables root wrappers (`npm run dev|lint|build`) to work out-of-the-box on fresh agents without manual dependency setup.
+- The config also pre-opens terminal commands for `npm run dev` and `npm run lint`, and exposes ports `3000` and `3001`.
+
 Common commands:
 
 ```sh
