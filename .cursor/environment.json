@@ -1,6 +1,6 @@
 {
   "name": "melano-inc-features-cloud-env",
-  "install": "bash -lc 'set -euo pipefail; APP_DIR=\"v0-melano-inc-features\"; CACHE_DIR=\".cursor/.cache\"; HASH_FILE=\"$CACHE_DIR/v0-package.sha256\"; mkdir -p \"$CACHE_DIR\"; NEW_HASH=$(sha256sum \"$APP_DIR/package.json\" | cut -d\" \" -f1); OLD_HASH=\"\"; if [ -f \"$HASH_FILE\" ]; then OLD_HASH=$(<\"$HASH_FILE\"); fi; if [ ! -d \"$APP_DIR/node_modules\" ] || [ \"$NEW_HASH\" != \"$OLD_HASH\" ]; then npm --prefix \"$APP_DIR\" install --no-audit --prefer-offline; echo \"$NEW_HASH\" > \"$HASH_FILE\"; else echo \"Dependencies already prepared for $APP_DIR\"; fi'",
+  "install": "bash -lc 'set -euo pipefail; APP_DIR=\"v0-melano-inc-features\"; CACHE_DIR=\".cursor/.cache\"; HASH_FILE=\"$CACHE_DIR/v0-deps.sha256\"; mkdir -p \"$CACHE_DIR\"; HASH_INPUTS=(\"$APP_DIR/package.json\"); if [ -f \"$APP_DIR/package-lock.json\" ]; then HASH_INPUTS+=(\"$APP_DIR/package-lock.json\"); fi; NEW_HASH=$(sha256sum \"${HASH_INPUTS[@]}\" | sha256sum | cut -d\" \" -f1); OLD_HASH=\"\"; if [ -f \"$HASH_FILE\" ]; then OLD_HASH=$(<\"$HASH_FILE\"); fi; if [ ! -d \"$APP_DIR/node_modules\" ] || [ \"$NEW_HASH\" != \"$OLD_HASH\" ]; then npm --prefix \"$APP_DIR\" install --no-audit --prefer-offline; echo \"$NEW_HASH\" > \"$HASH_FILE\"; else echo \"Dependencies already prepared for $APP_DIR\"; fi'",
   "ports": [
     {
       "name": "nextjs",
