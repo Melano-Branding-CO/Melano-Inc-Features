@@ -31,6 +31,13 @@ Important current repository facts:
 
 Use the root workspace for orchestration and quick verification.
 
+Cloud agent environment config:
+
+- Repo now includes `.cursor/environment.json` to preinstall app dependencies in `v0-melano-inc-features` via an idempotent hash check on `package.json`.
+- It runs `npm --prefix "v0-melano-inc-features" install --no-audit --prefer-offline` only when dependencies are missing or app manifest hash changes.
+- This enables root wrappers (`npm run dev|lint|build`) to work out-of-the-box on fresh agents without manual dependency setup.
+- The config exposes port `3000` and opens one terminal command for `npm run dev`.
+
 Common commands:
 
 ```sh
