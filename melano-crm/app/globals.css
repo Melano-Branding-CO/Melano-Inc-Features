@@ -178,10 +178,13 @@ a {
 
 .badge {
   display: inline-flex;
+  flex: 0 0 auto;
   padding: 0.4rem 0.7rem;
   color: #7a4611;
   font-size: 0.8rem;
   font-weight: 700;
+  line-height: 1.1;
+  white-space: nowrap;
   background: #f7dfb8;
   border-radius: 999px;
 }
