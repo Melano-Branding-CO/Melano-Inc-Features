@@ -4,7 +4,8 @@
     "start": "npm --prefix \"v0-melano-inc-features\" run start",
     "build": "npm --prefix \"v0-melano-inc-features\" run build",
     "lint": "npm --prefix \"v0-melano-inc-features\" run lint",
-    "test": "npm --prefix \"v0-melano-inc-features\" run test"
+    "test": "npm --prefix \"v0-melano-inc-features\" run test",
+    "preview": "npm --prefix \"v0-melano-inc-features\" run preview"
   },
   "dependencies": {
     "botid": "^1.5.11",
