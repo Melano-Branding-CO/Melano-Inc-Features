@@ -5,7 +5,13 @@
     "build": "npm --prefix \"v0-melano-inc-features\" run build",
     "lint": "npm --prefix \"v0-melano-inc-features\" run lint",
     "test": "npm --prefix \"v0-melano-inc-features\" run test",
-    "preview": "npm --prefix \"v0-melano-inc-features\" run preview"
+    "preview": "npm --prefix \"v0-melano-inc-features\" run preview",
+    "crm:dev": "npm --prefix \"melano-crm\" run dev",
+    "crm:build": "npm --prefix \"melano-crm\" run build",
+    "crm:typecheck": "npm --prefix \"melano-crm\" run typecheck",
+    "crm:setup": "npm --prefix \"melano-crm\" run setup:wizard",
+    "crm:setup:database": "npm --prefix \"melano-crm\" run setup:database",
+    "crm:test:db": "npm --prefix \"melano-crm\" run test:db"
   },
   "dependencies": {
     "botid": "^1.5.11",
