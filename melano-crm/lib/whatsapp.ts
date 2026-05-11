@@ -19,4 +19,4 @@ export function getWhatsAppPhoneDigits(): string {
 }
 
 export const DEFAULT_WHATSAPP_INTRO =
-  "Hola, quiero información sobre casas prefabricadas";
+  "Hola, quiero información sobre las casas prefabricadas.";
