@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { LeadForm } from "./lead-form";
 import styles from "./prefabricadas.module.css";
+import { CONTACT_EMAILS, WHATSAPP_DISPLAY } from "@/lib/contact";
 import { buildWhatsAppLink, DEFAULT_WHATSAPP_INTRO, getWhatsAppPhoneDigits } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
@@ -368,10 +369,32 @@ export default function CasasPrefabricadasPage() {
               <strong>Melano Hogar</strong> — casas prefabricadas para Argentina y LATAM. Precios y plazos no
               constituyen oferta vinculante hasta evaluación técnica y legal del proyecto.
             </p>
-            <p className={styles.footerNote}>
-              WhatsApp comercial: configurá tu número con la variable de entorno{" "}
-              <code>NEXT_PUBLIC_WHATSAPP_PHONE</code> (solo dígitos, código país incluido).
-            </p>
+            <div className={styles.footerContact}>
+              <p className={styles.footerContactTitle}>Contacto</p>
+              <p className={styles.footerLine}>
+                <a
+                  className={styles.footerLink}
+                  href={buildWhatsAppLink(phone, DEFAULT_WHATSAPP_INTRO)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  WhatsApp {WHATSAPP_DISPLAY}
+                </a>
+              </p>
+              <ul className={styles.footerEmails} aria-label="Correos electrónicos">
+                {CONTACT_EMAILS.map((email) => (
+                  <li key={email}>
+                    <a className={styles.footerLink} href={`mailto:${email}`}>
+                      {email}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              <p className={styles.footerNote}>
+                En otros entornos podés fijar <code>NEXT_PUBLIC_WHATSAPP_PHONE</code> (solo dígitos con código país)
+                para sustituir el número por defecto.
+              </p>
+            </div>
           </div>
         </footer>
       </main>

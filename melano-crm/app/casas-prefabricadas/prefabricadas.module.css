@@ -545,6 +545,41 @@
   margin-top: 0.75rem;
 }
 
+.footerContact {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 0.5rem;
+}
+
+.footerContactTitle {
+  margin: 0;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.footerLine {
+  margin: 0;
+}
+
+.footerEmails {
+  margin: 0;
+  padding-left: 1.15rem;
+  display: grid;
+  gap: 0.25rem;
+}
+
+.footerLink {
+  color: var(--gold-deep);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.footerLink:hover {
+  color: var(--ink);
+}
+
 .stickyWa {
   position: fixed;
   z-index: 40;
