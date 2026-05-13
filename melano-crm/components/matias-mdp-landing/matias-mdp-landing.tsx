@@ -17,46 +17,6 @@ import styles from "./matias-mdp.module.css";
 const MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=Calle+26+y+427+bis+Mar+del+Plata+Argentina";
 
-const ADS_COPY = `AD 1 — Inversión
-💰 Invertí en una de las zonas con mayor 📈 crecimiento de 🌊 Mar del Plata.
-
-✓ 📐 441 m²
-✓ 📍 Esquina estratégica
-✓ 💳 Financiación disponible
-✓ 📈 Excelente proyección
-
-📲 Solicitá información ahora.
-
----
-
-AD 2 — Buenos Aires
-Cada vez más personas de 🏙️ Buenos Aires están invirtiendo en 🌎 tierra antes de la próxima 📈 valorización costera.
-
-📍 🌊 Mar del Plata
-📐 441 m²
-✔ 💳 Financiación disponible
-
-💬 Consultá por WhatsApp.
-
----
-
-AD 3 — Posicionamiento
-No se trata solo de comprar un 🏡 terreno.
-
-Se trata de entrar temprano en una zona con 📈 potencial real de crecimiento.
-
-📲 Solicitá ubicación y propuesta personalizada.`;
-
-const REELS_HOOKS = `1. “💰 Las mejores inversiones inmobiliarias se hacen antes de que la zona explote.”
-
-2. “🌎 Hoy comprás tierra. 🚀 Mañana comprás valorización.”
-
-3. “🏙️ Cada vez más personas salen de Buenos Aires para invertir en la 🌊 costa.”
-
-4. “📍 Los lotes esquina siempre son los primeros en subir de valor.”
-
-5. “🔥 ¿Y si esta fuera la inversión que compraste antes que todos?”`;
-
 export function MatiasMdpLanding() {
   const wa = (msg: string) => buildWhatsAppLink(MATIAS_WA_DIGITS, msg);
 
@@ -68,7 +28,6 @@ export function MatiasMdpLanding() {
             🏡 MATÍAS <span>PROPIEDADES</span>
           </Link>
           <nav className={styles.navLinks} aria-label="Secciones">
-            <a href="#oportunidad">Oportunidad</a>
             <a href="#ubicacion">Ubicación</a>
             <a href="#detalles">Terreno</a>
             <a href="#financiacion">Financiación</a>
@@ -83,7 +42,7 @@ export function MatiasMdpLanding() {
       <section id="hero" className={styles.hero}>
         <div className={styles.heroBg} aria-hidden />
         <div className={`${styles.wrap} ${styles.heroInner}`}>
-          <p className={styles.eyebrow}>💰 Oportunidad de inversión en 🌊 Mar del Plata</p>
+          <p className={styles.eyebrow}>🌊 Mar del Plata · 🏡 Lote 441 m²</p>
           <h1>💰 Invertí en 🌊 Mar del Plata antes de la próxima 📈 ola de valorización.</h1>
           <p className={styles.lead}>
             🏡 Lote premium de 441 m² en 📍 esquina estratégica dentro de una de las zonas con mayor 📈 crecimiento
@@ -106,29 +65,6 @@ export function MatiasMdpLanding() {
           </div>
           <p className={styles.trustLine}>
             <strong>🤝 Atención personalizada</strong> para compradores de 🏙️ Buenos Aires.
-          </p>
-        </div>
-      </section>
-
-      <section id="oportunidad" className={`${styles.section} ${styles.sectionAlt}`}>
-        <div className={styles.wrap}>
-          <h2 className={styles.sectionTitle}>💰 Una inversión pensada para crecer.</h2>
-          <p className={styles.sectionLead}>
-            Cada vez más personas de 🏙️ Buenos Aires están migrando 💵 capital hacia desarrollos 🌊 costeros con
-            potencial real de 📈 valorización.
-          </p>
-          <p className={styles.sectionLead} style={{ marginTop: "1rem" }}>
-            Este terreno combina:
-          </p>
-          <ul className={styles.listCheck}>
-            <li>• 📍 ubicación estratégica</li>
-            <li>• 🏗️ proyección inmobiliaria</li>
-            <li>• 💳 financiación parcial</li>
-            <li>• 🏡 potencial constructivo</li>
-            <li>• ✨ entorno moderno</li>
-          </ul>
-          <p className={styles.sectionLead} style={{ marginTop: "1.25rem" }}>
-            Ideal para quienes buscan preservar 💵 capital en un activo físico con posibilidad de 📈 crecimiento.
           </p>
         </div>
       </section>
@@ -234,7 +170,7 @@ export function MatiasMdpLanding() {
             <li>✓ 🤝 Posibilidad de propuesta personalizada</li>
           </ul>
           <p className={styles.sectionLead} style={{ marginTop: "1.25rem" }}>
-            ⏳ Entrar temprano en zonas con crecimiento sostenido suele generar las mejores oportunidades inmobiliarias.
+            ⏳ Zonas en expansión con crecimiento sostenido suelen consolidar valor en el tiempo.
           </p>
           <div className={styles.ctaRow} style={{ marginTop: "1.5rem" }}>
             <a
@@ -264,7 +200,7 @@ export function MatiasMdpLanding() {
             <li>✓ 📈 mejor relación valor/proyección</li>
             <li>✓ 🏗️ crecimiento urbano</li>
             <li>✓ 🏖️ entorno turístico</li>
-            <li>✓ 🚀 oportunidad de ingreso temprano</li>
+            <li>✓ 🚀 timing conveniente para ingresar al mercado</li>
           </ul>
           <p className={styles.sectionLead} style={{ marginTop: "1.25rem" }}>
             🚗 Posibilidad de coordinar visitas privadas para compradores de 🏙️ Buenos Aires.
@@ -309,7 +245,7 @@ export function MatiasMdpLanding() {
               <footer>— Cliente verificado</footer>
             </blockquote>
             <blockquote className={styles.quote}>
-              “💰 Una gran oportunidad para invertir en 🌊 Mar del Plata.”
+              “💰 Excelente inversión en 🌊 Mar del Plata.”
               <footer>— Inversor</footer>
             </blockquote>
             <blockquote className={styles.quote}>
@@ -326,7 +262,7 @@ export function MatiasMdpLanding() {
             <div>
               <p style={{ margin: 0, fontWeight: 800, fontSize: "1.1rem" }}>🏡 MATÍAS PROPIEDADES</p>
               <p className={styles.sectionLead} style={{ marginTop: "0.75rem" }}>
-                💼 Especialistas en oportunidades inmobiliarias.
+                💼 Asesoramiento inmobiliario en la costa.
               </p>
             </div>
             <div style={{ display: "grid", gap: "0.65rem", fontSize: "0.95rem" }}>
@@ -341,19 +277,6 @@ export function MatiasMdpLanding() {
               </a>
             </div>
           </div>
-
-          <details className={styles.collapsible}>
-            <summary>📢 Copy para Meta Ads (interno)</summary>
-            <pre>{ADS_COPY}</pre>
-          </details>
-          <details className={styles.collapsible}>
-            <summary>🎬 Hooks para Reels</summary>
-            <pre>{REELS_HOOKS}</pre>
-          </details>
-          <p className={styles.formHint} style={{ marginTop: "1.5rem" }}>
-            Tracking recomendado: Meta Pixel + Conversion API, Google Analytics, n8n — configurar en Vercel / Tag
-            Manager según tu stack.
-          </p>
         </div>
       </footer>
 

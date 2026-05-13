@@ -21,7 +21,7 @@ const site =
 
 export const metadata: Metadata = {
   metadataBase: new URL(site),
-  title: "🏡 Lote en Venta en 🌊 Mar del Plata | 💎 Inversión Premium con 💳 Financiación",
+  title: "🏡 Lote en venta en 🌊 Mar del Plata | 441 m² esquina · 💳 Financiación",
   description:
     "🏡 Lote premium de 441 m² en 📍 esquina estratégica en 🌊 Mar del Plata. Ideal para 💰 inversión, 🏠 vivienda o 🏖️ desarrollo turístico. 💳 Financiación disponible.",
   keywords: [
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   ],
   robots: { index: true, follow: true },
   openGraph: {
-    title: "🏡 Lote en Venta en 🌊 Mar del Plata | 💎 Inversión Premium con 💳 Financiación",
+    title: "🏡 Lote en venta en 🌊 Mar del Plata | 441 m² esquina · 💳 Financiación",
     description:
       "🏡 Lote premium de 441 m² en 📍 esquina estratégica en 🌊 Mar del Plata. Ideal para 💰 inversión, 🏠 vivienda o 🏖️ desarrollo turístico. 💳 Financiación disponible.",
     locale: "es_AR",
