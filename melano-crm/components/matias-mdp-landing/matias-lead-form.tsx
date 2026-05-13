@@ -41,12 +41,23 @@ export function MatiasLeadForm() {
     }
 
     try {
-      await fetch("/api/matias-lead", {
+      const res = await fetch("/api/matias-lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ nombre_completo, whatsapp, email, objetivo }),
       });
-    } catch {
+
+      if (!res.ok) {
+        console.error("Webhook /api/matias-lead error:", {
+          status: res.status,
+          statusText: res.statusText,
+        });
+        setError(
+          "No pudimos notificar el webhook opcional (/api/matias-lead). Verificá la configuración del backend.",
+        );
+      }
+    } catch (err) {
+      console.error("Webhook /api/matias-lead network/error:", err);
       /* webhook opcional */
     }
 
