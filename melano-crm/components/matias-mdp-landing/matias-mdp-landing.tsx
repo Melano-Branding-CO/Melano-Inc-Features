@@ -277,7 +277,6 @@ export function MatiasMdpLanding() {
               </a>
             </div>
           </div>
-
         </div>
       </footer>
 
