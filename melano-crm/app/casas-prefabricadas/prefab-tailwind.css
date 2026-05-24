@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  #melano-prefab {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  #melano-prefab ::selection {
+    background-color: rgba(212, 184, 120, 0.35);
+    color: #fafafa;
+  }
+}
