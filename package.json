@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "botid": "^1.5.11",
-    "docker": "^0.2.14",
+    "docker": "^1.0.0",
     "mongodb": "^7.1.0"
   }
 }
