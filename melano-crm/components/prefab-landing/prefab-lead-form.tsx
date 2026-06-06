@@ -2,6 +2,7 @@
 
 import { type FormEvent, useState } from "react";
 
+import { hasSupabaseConfig, supabase } from "@/lib/supabase";
 import { buildWhatsAppLink, DEFAULT_WHATSAPP_INTRO } from "@/lib/whatsapp";
 
 type PrefabLeadFormProps = {
@@ -10,15 +11,31 @@ type PrefabLeadFormProps = {
 
 export function PrefabLeadForm({ whatsappDigits }: PrefabLeadFormProps) {
   const [pending, setPending] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setPending(true);
+    setSubmitError(null);
     const fd = new FormData(e.currentTarget);
     const nombre = String(fd.get("nombre") ?? "").trim();
     const telefono = String(fd.get("telefono") ?? "").trim();
     const ciudad = String(fd.get("ciudad") ?? "").trim();
     const presupuesto = String(fd.get("presupuesto") ?? "").trim();
+
+    if (hasSupabaseConfig && supabase) {
+      const { error } = await supabase.from("leads_luxia").insert({
+        nombre_completo: nombre,
+        telefono: telefono,
+        origen_campana: "landing_prefabricadas_ar",
+        propiedad_interes: "casas prefabricadas",
+      });
+
+      if (error) {
+        console.error("Supabase leads_luxia:", error);
+        setSubmitError("No pudimos guardar tus datos en el sistema. Podés seguir por WhatsApp.");
+      }
+    }
 
     try {
       await fetch("/api/prefab-lead", {
@@ -118,6 +135,11 @@ export function PrefabLeadForm({ whatsappDigits }: PrefabLeadFormProps) {
           >
             {pending ? "Enviando…" : "Recibir cotización"}
           </button>
+          {submitError ? (
+            <p className="mt-4 text-center text-xs text-amber-300/90" role="alert">
+              {submitError}
+            </p>
+          ) : null}
           <p className="mt-4 text-center text-xs text-melano-muted">
             Al continuar, aceptás ser contactado por un asesor comercial Melano Inc.
           </p>
