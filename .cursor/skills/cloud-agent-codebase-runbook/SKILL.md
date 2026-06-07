@@ -66,6 +66,16 @@ npm run dev                                     # preferred root wrapper
 npm --prefix "v0-melano-inc-features" run dev
 ```
 
+Validated Cursor Cloud setup:
+
+```sh
+npm install
+npm --prefix "v0-melano-inc-features" install
+npm run dev
+```
+
+Expected dev URL: `http://localhost:5173/`. No `.env` file is required for the starter app.
+
 Manual UI smoke workflow after the dev server starts:
 
 1. Note the local URL printed by the dev server, commonly `http://localhost:3000`.
