@@ -3,20 +3,11 @@
 import { type FormEvent, useState } from "react";
 
 import { hasSupabaseConfig, supabase } from "@/lib/supabase";
-import { buildWhatsAppLink } from "@/lib/whatsapp";
+import { buildWhatsAppLink, DEFAULT_WHATSAPP_INTRO } from "@/lib/whatsapp";
 
 type PrefabLeadFormProps = {
   whatsappDigits: string;
 };
-
-function buildWhatsAppBody(nombre: string, ciudad: string, presupuesto: string) {
-  const lines = [
-    `Hola, mi nombre es ${nombre}. Estoy interesado en las casas prefabricadas y me gustaría recibir más información.`,
-  ];
-  if (ciudad) lines.push(`Ciudad: ${ciudad}`);
-  if (presupuesto) lines.push(`Presupuesto estimado: ${presupuesto}`);
-  return lines.join("\n\n");
-}
 
 export function PrefabLeadForm({ whatsappDigits }: PrefabLeadFormProps) {
   const [pending, setPending] = useState(false);
@@ -53,10 +44,18 @@ export function PrefabLeadForm({ whatsappDigits }: PrefabLeadFormProps) {
         body: JSON.stringify({ nombre, telefono, ciudad, presupuesto }),
       });
     } catch {
-      /* webhook opcional */
+      /* webhook optional */
     }
 
-    const msg = buildWhatsAppBody(nombre, ciudad, presupuesto);
+    const msg = [
+      DEFAULT_WHATSAPP_INTRO,
+      "",
+      `Nombre: ${nombre || "—"}`,
+      `Teléfono: ${telefono || "—"}`,
+      `Ciudad: ${ciudad || "—"}`,
+      `Presupuesto estimado: ${presupuesto || "—"}`,
+    ].join("\n");
+
     window.open(buildWhatsAppLink(whatsappDigits, msg), "_blank", "noopener,noreferrer");
     setPending(false);
   }
